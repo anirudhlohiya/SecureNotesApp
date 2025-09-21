@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Notes App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #f5f5f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h1, h2 {
+            color: #26a69a;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        label {
+            font-weight: 500;
+            color: #78909c;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #26a69a;
+            outline: none;
+        }
+        button {
+            padding: 10px;
+            background-color: #26a69a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1e7e74;
+        }
+        #notesSection {
+            margin-top: 20px;
+            flex: 2;
+            min-width: 0;
+        }
+        #notesList {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        #notesList li {
+            background-color: #fafafa;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+        #notesList button {
+            background-color: #ef6c00;
+            padding: 6px 12px;
+            margin-left: 10px;
+        }
+        #notesList button:hover {
+            background-color: #d35400;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Secure Notes App</h1>
+
+            <!-- Register Form -->
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="displayName">Display Name:</label>
+                <input type="text" id="displayName" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required><br>
+                <button type="submit">Register</button>
+            </form>
+
+            <!-- Login Form -->
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" required><br>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" required><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Notes Section (shown after login) -->
+        <div id="notesSection" class="card" style="display: none;">
+            <h2>Your Notes</h2>
+            <form id="noteForm">
+                <label for="title">Title:</label>
+                <input type="text" id="title" required><br>
+                <label for="content">Content:</label>
+                <textarea id="content" required rows="3"></textarea><br>
+                <button type="submit">Create Note</button>
+            </form>
+            <ul id="notesList"></ul>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
